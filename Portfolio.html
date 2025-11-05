@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Portfolio – Murat Atici</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --text-color: #333;
+      --card-bg: #fff;
+      --accent: #2b2d42;
+    }
+
+    body.dark {
+      --bg-color: #1a1b1f;
+      --text-color: #e0e0e0;
+      --card-bg: #2b2d42;
+      --accent: #8d99ae;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    #theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: 1px solid white;
+      color: white;
+      border-radius: 4px;
+      padding: 0.4rem 0.7rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    #theme-toggle:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      transition: background 0.3s;
+    }
+
+    h2 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .card {
+      flex: 1 1 250px;
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    /* Rechner CSS */
+    #calculator {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    #calc-display {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      text-align: right;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.3rem;
+    }
+
+    .calc-buttons button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      background-color: var(--accent);
+      color: white;
+      cursor: pointer;
+    }
+
+    .calc-buttons button:hover {
+      background-color: #1e2032;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    input, textarea {
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e9ecef;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    body.dark footer {
+      background-color: #2b2d42;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hallo, ich bin Murat Atici</h1>
+    <p>Das ist meine kleine Demo-Seite für meine Bewerbung als Applikationsentwickler</p>
+    <button id="theme-toggle">🌙</button>
+  </header>
+
+  <main>
+    <section>
+      <h2>Über mich</h2>
+      <p>Ich bin interessiert an Coding, Design und allem, was mit Technik zu tun hat. In meiner Freizeit beschäftige ich mich damit auch und nutze Websites, wie <a href="https://www.w3schools.com/html/default.asp" target="_blank">w3schools</a>, um meine Interessen zu erlernen.<br><br>
+      Diese Website habe ich selbst mit HTML, CSS und etwas JavaScript erstellt, um zu zeigen, dass ich mit den Grundlagen umgehen kann.</p>
+    </section>
+
+    <section>
+      <h2>Projekte</h2>
+      <div class="project-list">
+        <!-- Mini-Taschenrechner -->
+        <div class="card" id="calculator">
+          <h3>Mini-Taschenrechner</h3>
+          <p>Ein einfacher Rechner für Addition, Subtraktion, Multiplikation und Division.</p>
+          <input type="text" id="calc-display" placeholder="0" disabled />
+          <div class="calc-buttons">
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="setOperation('/')">÷</button>
+
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="setOperation('*')">×</button>
+
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="setOperation('-')">−</button>
+
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="setOperation('+')">+</button>
+          </div>
+        </div>
+
+        <!-- Dark/Light-Mode -->
+        <div class="card">
+          <h3>Dark-/Light-Mode</h3>
+          <p>Meine Demo-Seite mit Umschalter zwischen hellem und dunklem Modus, umgesetzt mit CSS und JavaScript.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Kontakt</h2>
+      <form onsubmit="event.preventDefault(); alert('Nachricht wurde gesendet!');">
+        <input type="text" placeholder="Dein Name" required />
+        <input type="email" placeholder="Deine E-Mail" required />
+        <textarea rows="4" placeholder="Nachricht"></textarea>
+        <button type="submit">Absenden</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Murat Atici – Demo Portfolio</p>
+  </footer>
+
+  <script>
+    // === Dark/Light-Mode ===
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      toggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+
+    // === Mini-Taschenrechner ===
+    let currentNumber = '';
+    let previousNumber = '';
+    let operation = null;
+
+    function appendNumber(num) {
+      currentNumber += num;
+      updateDisplay();
+    }
+
+    function setOperation(op) {
+      if (currentNumber === '') return;
+      if (previousNumber !== '') calculate();
+      operation = op;
+      previousNumber = currentNumber;
+      currentNumber = '';
+    }
+
+    function calculate() {
+      const prev = parseFloat(previousNumber);
+      const curr = parseFloat(currentNumber);
+      if (isNaN(prev) || isNaN(curr)) return;
+
+      let result;
+      switch (operation) {
+        case '+': result = prev + curr; break;
+        case '-': result = prev - curr; break;
+        case '*': result = prev * curr; break;
+        case '/': result = prev / curr; break;
+        default: return;
+      }
+
+      currentNumber = result.toString();
+      operation = null;
+      previousNumber = '';
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      currentNumber = '';
+      previousNumber = '';
+      operation = null;
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      document.getElementById('calc-display').value = currentNumber;
+    }
+  </script>
+</body>
+</html>
